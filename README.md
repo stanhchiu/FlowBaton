@@ -8,15 +8,14 @@ A two-piece, 3D-printable end-cap system for majorette-style batons featuring an
 
 * **`code/`** (OpenSCAD Models):
   * **[end_cap.scad](file:///c:/workspaces/Baton/code/end_cap.scad)**: End-cap body with M22×2 external threads, continuous shaft through-hole, and 26.5 mm collar.
-  * **[retaining_ring.scad](file:///c:/workspaces/Baton/code/retaining_ring.scad)**: Retaining ring with internal M22×2 thread (+0.20 mm radial clearance), 11.7 mm retention lip, and 6 grip flutes.
+  * **[retaining_ring.scad](file:///c:/workspaces/Baton/code/retaining_ring.scad)**: Retaining ring with internal M22×2 thread (+0.25 mm radial clearance), 11.7 mm retention lip, and 6 grip flutes.
 
 * **`exports/`** (Printable 3D Meshes):
   * **[end_cap.stl](file:///c:/workspaces/Baton/exports/end_cap.stl)**: Exported STL ready for slicing.
   * **[retaining_ring.stl](file:///c:/workspaces/Baton/exports/retaining_ring.stl)**: Exported STL ready for slicing.
 
 * **`print/`** (Slicer Project & Settings):
-  * **`end_cap.3mf`**: Slicer project file for the end-cap body.
-  * **`retaining_ring.3mf`**: Slicer project file for the retaining ring.
+  * **`baton.3mf`**: Original Creality Print project archive containing plate layout and slicer settings.
   * **[print_analysis.md](file:///c:/workspaces/Baton/print/print_analysis.md)**: Detailed mechanical, thermal, and printability analysis of the slicing parameters.
 
 ---
