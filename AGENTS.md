@@ -18,4 +18,4 @@
 
 ## Slicing & 3MF Configuration
 - **Supports Enabled**: Always keep support generation enabled (`enable_support = 1`, `tree(auto)`) in `print/*.3mf` project settings to satisfy slicing software requirements.
-- **Resolution & Quality**: Maintain `0.16 mm` layer height and `rear` seam placement for optimal thread engagement.
+- **Resolution & Quality**: Maintain `0.16 mm` layer height and `aligned back` seam placement for optimal thread engagement.

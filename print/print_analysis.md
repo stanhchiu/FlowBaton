@@ -11,7 +11,7 @@ This document provides a detailed mechanical and printability analysis of the sl
 | **3D Models** | Updated to latest **M22×2** | Includes gap fix and removed vent holes |
 | **Nozzle Diameter** | `0.4 mm` (Brass) | Standard resolution |
 | **Layer Height** | **`0.16 mm`** (First layer: `0.20 mm`) | **Optimized for silky-smooth 60° thread flanks** |
-| **Seam Position** | **`back`** *(Creality Print)* | **Prevents vertical ridge interference on threads** |
+| **Seam Position** | **`aligned back`** *(Creality Print)* | **Prevents vertical ridge interference on threads** |
 | **Supports** | **`Enabled (1)`** (`tree(auto)`) | **Enabled to satisfy slicer requirements** |
 | **Wall Loops / Count** | `5 perimeters` (Outer: `0.42 mm` width) | High hoop strength (100% solid concentric rings) |
 | **Wall Generator** | `Arachne` | Adaptive extrusion width |
