@@ -15,7 +15,8 @@ A two-piece, 3D-printable end-cap system for majorette-style batons featuring an
   * **[retaining_ring.stl](file:///c:/workspaces/Baton/exports/retaining_ring.stl)**: Exported STL ready for slicing.
 
 * **`print/`** (Slicer Project & Settings):
-  * **`baton.3mf`**: Creality/Orca/Bambu slicer project archive.
+  * **`end_cap.3mf`**: Slicer project file for the end-cap body.
+  * **`retaining_ring.3mf`**: Slicer project file for the retaining ring.
   * **[print_analysis.md](file:///c:/workspaces/Baton/print/print_analysis.md)**: Detailed mechanical, thermal, and printability analysis of the slicing parameters.
 
 ---
@@ -63,10 +64,11 @@ ring_outer_diameter = 26.5;  // Match ring_outer_diameter in end_cap.scad
 | :--- | :--- | :--- |
 | **Material** | **PETG, ASA, ABS, or Nylon (PA-CF)** | High impact strength and interlayer bonding. Avoid standard brittle PLA for drop-resistance. |
 | **Orientation** | Print both parts standing upright (Z-axis vertical). | Eliminates supports; thread profiles print cleanly without overhang artifacts. |
-| **Layer Height** | **$0.12\text{ mm} - 0.16\text{ mm}$** | Finer layer heights produce smooth, accurate 60° thread flanks. |
-| **Perimeters / Walls** | **$5 - 6\text{ walls}$** | Ensures the threaded sections are 100% solid plastic for maximum hoop strength. |
-| **Infill** | **$40\% - 100\%$ (Gyroid or Grid)** | Solid core prevents compression under impact. |
-| **Supports** | **None required** | All overhangs and internal chamfers are designed at $\le 45^\circ$. |
+| **Layer Height** | **$0.16\text{ mm}$** ($0.20\text{ mm}$ first layer) | Fine layer height produces smooth, accurate 60° thread flanks. |
+| **Perimeters / Walls** | **$5\text{ walls}$** | Ensures the threaded sections are 100% solid plastic for maximum hoop strength. |
+| **Infill** | **$100\%$ (`zig-zag`)** | Solid core prevents compression under impact. |
+| **Seam Position** | **`back`** *(Creality Print)* | Relocates seam start/stop points away from mating thread flanks. |
+| **Supports** | **`tree(auto)` (Enabled)** | Enabled to satisfy slicer pre-conditions. |
 
 ---
 

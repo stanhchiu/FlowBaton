@@ -11,7 +11,7 @@ This document provides a detailed mechanical and printability analysis of the sl
 | **3D Models** | Updated to latest **M22×2** | Includes gap fix and removed vent holes |
 | **Nozzle Diameter** | `0.4 mm` (Brass) | Standard resolution |
 | **Layer Height** | **`0.16 mm`** (First layer: `0.20 mm`) | **Optimized for silky-smooth 60° thread flanks** |
-| **Seam Position** | **`rear`** | **Prevents vertical ridge interference on threads** |
+| **Seam Position** | **`back`** *(Creality Print)* | **Prevents vertical ridge interference on threads** |
 | **Supports** | **`Enabled (1)`** (`tree(auto)`) | **Enabled to satisfy slicer requirements** |
 | **Wall Loops / Count** | `5 perimeters` (Outer: `0.42 mm` width) | High hoop strength (100% solid concentric rings) |
 | **Wall Generator** | `Arachne` | Adaptive extrusion width |
@@ -50,6 +50,6 @@ This document provides a detailed mechanical and printability analysis of the sl
 ### B. Support Material (Enabled: `enable_support = 1`, `tree(auto)`)
 * Tree supports are enabled to satisfy slicer pre-conditions. Because the geometry uses $\le 45^\circ$ self-supporting internal chamfers, tree supports will only generate minimal lightweight branches where strictly required.
 
-### C. Z-Seam Placement (`seam_position = "rear"`)
-* Set to **`rear`** to distribute/relocate seam starts away from the thread mating crests.
+### C. Z-Seam Placement (`seam_position = "back"`)
+* Set to **`back`** (Creality Print equivalent of rear) to distribute/relocate seam starts away from the front thread mating crests.
 * **Tip**: Any tiny residual micro-burr from the seam will be automatically burnished smooth by a single full rotation of the retaining ring upon first assembly.
