@@ -20,12 +20,11 @@ axial_free_play = 0.30;
 
 // Calculated internal geometry
 // Optimized 0.65 mm thread depth: wide, self-supporting 45-degree flank ramps with wide flat crests/roots
-thread_depth = 0.65; 
+thread_depth = 0.65;
 
 // Helper function for 3D-printable trapezoidal thread profile with 45-degree self-supporting flanks
 function thread_radius(angle, r_max, depth) =
-  let (a = ( (angle % 360) + 360) % 360) 
-  (a < 60) ? (r_max - depth)
+  let (a = ( (angle % 360) + 360) % 360) (a < 60) ? (r_max - depth)
   : (a < 120) ? ( (r_max - depth) + depth * (a - 60) / 60)
   : (a < 240) ? r_max
   : (a < 300) ? (r_max - depth * (a - 240) / 60)
