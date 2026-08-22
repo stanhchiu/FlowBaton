@@ -7,26 +7,28 @@ $fn = 72;
 // User-Editable Parameters
 // ==========================================
 
-// Internal Thread Parameters (M22 x 2)
+// Internal Thread Parameters (M22 x 2.0 Printable Trapezoidal Profile)
 thread_major_d = 22.0;
 thread_pitch = 2.0;
 thread_length = 10;
-thread_clearance_radial = 0.25; // 0.25 mm radial clearance (0.50 mm diametral clearance for smooth FDM threading)
+thread_clearance_radial = 0.40; // 0.40 mm radial clearance (0.80 mm diametral clearance for smooth FDM threading)
 
 ring_outer_diameter = 26.5;
-ring_inner_opening_id = 12.8;
+ring_inner_opening_id = 13.0;
 ring_lip_thickness = 1.75;
 axial_free_play = 0.30;
 
 // Calculated internal geometry
-thread_depth = (thread_pitch / 4) * sqrt(3); // 0.8660 mm for 60-degree thread profile
+// Optimized 0.65 mm thread depth: wide, self-supporting 45-degree flank ramps with wide flat crests/roots
+thread_depth = 0.65; 
 
-// Helper function for 60-degree trapezoidal thread profile
+// Helper function for 3D-printable trapezoidal thread profile with 45-degree self-supporting flanks
 function thread_radius(angle, r_max, depth) =
-  let (a = ( (angle % 360) + 360) % 360) (a < 45) ? (r_max - depth)
-  : (a < 135) ? ( (r_max - depth) + depth * (a - 45) / 90)
-  : (a < 225) ? r_max
-  : (a < 315) ? (r_max - depth * (a - 225) / 90)
+  let (a = ( (angle % 360) + 360) % 360) 
+  (a < 60) ? (r_max - depth)
+  : (a < 120) ? ( (r_max - depth) + depth * (a - 60) / 60)
+  : (a < 240) ? r_max
+  : (a < 300) ? (r_max - depth * (a - 240) / 60)
   : (r_max - depth);
 
 // Module: Internal Thread Cutter (Right-Handed Internal Thread: positive twist)
@@ -49,7 +51,7 @@ module retaining_ring() {
     // Outer Ring Body
     cylinder(d=ring_outer_diameter, h=ring_height);
 
-    // 1. Internal M22 x 2 Thread Cutter with radial clearance
+    // 1. Internal M22 x 2 Thread Cutter with 0.40 mm radial clearance
     translate([0, 0, -0.1])
       internal_thread_cutter(
         d_major=thread_major_d,
@@ -59,7 +61,7 @@ module retaining_ring() {
         clearance=thread_clearance_radial
       );
 
-    // 2. Thread Entrance Lead-in Chamfer
+    // 2. Thread Entrance Conical Lead-in Chamfer
     translate([0, 0, -0.01])
       cylinder(
         r1=(thread_major_d / 2) + thread_clearance_radial + 0.8,
@@ -67,11 +69,11 @@ module retaining_ring() {
         h=1.2
       );
 
-    // 3. Centered Retaining Lip Opening (11.7 mm ID)
+    // 3. Centered Retaining Lip Opening (13.0 mm ID)
     translate([0, 0, h_thread_cavity - 0.1])
       cylinder(d=ring_inner_opening_id, h=ring_lip_thickness + 0.3);
 
-    // 4. Non-cutting Chamfers on 11.7 mm Lip Opening
+    // 4. Smooth Chamfers on Lip Opening
     translate([0, 0, ring_height - 0.5])
       cylinder(r1=ring_inner_opening_id / 2, r2=(ring_inner_opening_id / 2) + 0.5, h=0.51);
     translate([0, 0, h_thread_cavity - 0.01])

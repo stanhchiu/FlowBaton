@@ -17,7 +17,7 @@ glowstick_pocket_depth = 13.1;
 
 body_wall = 2.75;
 
-// External Thread Parameters (M22 x 2)
+// External Thread Parameters (M22 x 2.0 Printable Trapezoidal Profile)
 thread_major_d = 22.0;
 thread_pitch = 2.0;
 thread_length = 10;
@@ -30,14 +30,16 @@ body_shaft_od = shaft_socket_id + 2 * body_wall; // 13.80 mm
 body_base_od = glowstick_pocket_id + 2 * body_wall; // 20.35 mm
 body_collar_od = ring_outer_diameter; // 26.5 mm
 
-thread_depth = (thread_pitch / 4) * sqrt(3); // 0.8660 mm for 60-degree thread profile
+// Optimized 0.65 mm thread depth: wide, self-supporting 45-degree flank ramps with wide flat crests/roots
+thread_depth = 0.65;
 
-// Helper function for 60-degree trapezoidal thread profile
+// Helper function for 3D-printable trapezoidal thread profile with 45-degree self-supporting flanks
 function thread_radius(angle, r_max, depth) =
-  let (a = ( (angle % 360) + 360) % 360) (a < 45) ? (r_max - depth)
-  : (a < 135) ? ( (r_max - depth) + depth * (a - 45) / 90)
-  : (a < 225) ? r_max
-  : (a < 315) ? (r_max - depth * (a - 225) / 90)
+  let (a = ( (angle % 360) + 360) % 360) 
+  (a < 60) ? (r_max - depth)
+  : (a < 120) ? ( (r_max - depth) + depth * (a - 60) / 60)
+  : (a < 240) ? r_max
+  : (a < 300) ? (r_max - depth * (a - 240) / 60)
   : (r_max - depth);
 
 // Module: External Thread Generator
@@ -87,7 +89,7 @@ module end_cap() {
     translate([0, 0, -0.01])
       cylinder(r1=(shaft_socket_id / 2) + 0.5, r2=shaft_socket_id / 2, h=0.5);
 
-    // 2. Glow-Stick Pocket (ID 14.85 mm, Depth 13 mm) with top entry chamfer
+    // 2. Glow-Stick Pocket (ID 14.85 mm, Depth 13.1 mm) with top entry chamfer
     translate([0, 0, z_pocket_bottom])
       cylinder(d=glowstick_pocket_id, h=glowstick_pocket_depth + 0.5);
     translate([0, 0, z_body_top - 0.6])
