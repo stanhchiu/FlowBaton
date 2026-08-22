@@ -1,7 +1,7 @@
 // Baton Glow-Stick End-Cap Body
 // Units: Millimeters (mm)
 
-$fn = 60;
+$fn = 72;
 
 // ==========================================
 // User-Editable Parameters
@@ -43,9 +43,9 @@ function thread_radius(angle, r_max, depth) =
 // Module: External Thread Generator
 module external_thread(d_major, pitch, length, depth, clearance = 0) {
   r_max = (d_major / 2) - clearance;
-  n_pts = 48;
+  n_pts = 72;
 
-  linear_extrude(height=length, twist=-360 * (length / pitch), slices=ceil(length * 6), convexity=10)
+  linear_extrude(height=length, twist=-360 * (length / pitch), slices=ceil(length * 8), convexity=10)
     polygon([for (i = [0:n_pts - 1]) let (ang = i * 360 / n_pts, r = thread_radius(ang, r_max, depth)) [r * cos(ang), r * sin(ang)]]);
 }
 
