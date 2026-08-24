@@ -11,7 +11,7 @@ $fn = 72;
 // Carbon shaft socket
 shaft_od = 8.0;
 shaft_socket_id = 8.30;
-shaft_socket_depth = 30;
+shaft_socket_depth = 30.0;
 
 // Glow-stick pocket
 glowstick_base_od = 14.5;
@@ -21,21 +21,21 @@ glowstick_pocket_depth = 13.1;
 body_wall = 2.75;
 
 // Standard GPI 22-410 Bottle Neck Finish Parameters
-// T = Thread Major OD, E = Neck Minor OD, H = Finish Height, S = Thread Start Offset
 thread_major_d = 21.80;     // T dimension (nominal 21.84 mm with smooth clearance fit)
 neck_minor_d = 19.80;       // E dimension (neck wall diameter)
-finish_height = 14.50;      // H dimension (standard 410 finish height)
+neck_height = 13.50;        // Matches internal depth of 22-410 cap so cap seats flush on collar
 thread_pitch = 3.175;       // Standard 8 TPI continuous thread pitch
-thread_turns = 1.5;         // 1.5 full turns (540 degrees) of thread engagement
-thread_start_offset = 1.50; // S dimension (distance from top lip down to start of thread)
+thread_start_offset = 1.20; // Distance from top lip down to start of thread
 
-cap_collar_od = 24.80;      // Outer stop collar diameter for 22-410 cap skirt
+cap_collar_od = 24.80;      // Outer stop collar diameter matching 22-410 cap skirt
 
 // Calculated internal geometry
 shoulder_thickness = 4.0;
 body_shaft_od = shaft_socket_id + 2 * body_wall; // 13.80 mm
 thread_depth = (thread_major_d - neck_minor_d) / 2; // 1.00 mm
-thread_length = thread_turns * thread_pitch; // 4.7625 mm
+
+// Full-length thread extending down to the stop collar
+thread_length = neck_height - thread_start_offset; // ~12.3 mm (~3.8 full helical turns)
 
 // Helper function for rounded/trapezoidal bottle thread bead profile
 function bottle_thread_radius(angle, r_max, depth) =
@@ -58,10 +58,9 @@ module gpi_bottle_thread(d_major, pitch, length, depth) {
 // Module: End Cap Body
 module end_cap() {
   z_socket_top = shaft_socket_depth;
-  z_pocket_bottom = z_socket_top + shoulder_thickness;
-  z_body_top = z_pocket_bottom + finish_height;
-  z_thread_start = z_body_top - thread_start_offset - thread_length;
-  h_collar = shoulder_thickness;
+  z_collar_top = z_socket_top + shoulder_thickness;
+  z_body_top = z_collar_top + neck_height;
+  z_thread_start = z_collar_top; // Threads run all the way down to collar shoulder
 
   difference() {
     union() {
@@ -74,13 +73,13 @@ module end_cap() {
 
       // 3. Base collar cylinder (24.8 mm OD flat stop shoulder for bottle cap skirt)
       translate([0, 0, z_socket_top])
-        cylinder(d = cap_collar_od, h = h_collar + 0.05);
+        cylinder(d = cap_collar_od, h = shoulder_thickness + 0.05);
 
       // 4. GPI 22-410 Neck Cylinder (E dimension = 19.80 mm)
-      translate([0, 0, z_pocket_bottom])
-        cylinder(d = neck_minor_d, h = finish_height);
+      translate([0, 0, z_collar_top])
+        cylinder(d = neck_minor_d, h = neck_height);
 
-      // 5. GPI 22-410 Helical Thread Bead (1.5 turns, T = 21.80 mm)
+      // 5. Full-length Helical Threads running down to collar shoulder
       translate([0, 0, z_thread_start])
         gpi_bottle_thread(
           d_major = thread_major_d,
@@ -90,13 +89,15 @@ module end_cap() {
         );
     }
 
-    // 1. Shaft Socket / Continuous Through-Hole (ID 8.30 mm) into glow-stick pocket
-    translate([0, 0, -0.1])
-      cylinder(d = shaft_socket_id, h = z_pocket_bottom + 0.2);
+    // 1. Full Continuous 8.30 mm Through-Hole from bottom all the way through to top
+    // Allows the 8.0 mm carbon shaft to extend directly into the hollow glow-stick base
+    translate([0, 0, -0.5])
+      cylinder(d = shaft_socket_id, h = z_body_top + 1.0);
     translate([0, 0, -0.01])
       cylinder(r1 = (shaft_socket_id / 2) + 0.5, r2 = shaft_socket_id / 2, h = 0.5);
 
-    // 2. Glow-Stick Pocket (ID 14.85 mm, Depth 13.1 mm) with top entry chamfer
+    // 2. Glow-Stick Pocket (ID 14.85 mm, Depth 13.1 mm)
+    // Leaves a 3.28 mm radial annular stop shoulder at the floor for the glow stick base rim
     translate([0, 0, z_body_top - glowstick_pocket_depth])
       cylinder(d = glowstick_pocket_id, h = glowstick_pocket_depth + 0.5);
     translate([0, 0, z_body_top - 0.6])
