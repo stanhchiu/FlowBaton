@@ -27,7 +27,7 @@ neck_height = 10.50;        // Shortened neck height (10.5 mm) matching cap inte
 thread_pitch = 3.175;       // Standard 8 TPI continuous thread pitch
 thread_start_offset = 1.20; // Distance from top lip down to start of thread
 
-cap_collar_od = 24.80;      // Outer stop collar diameter matching 22-410 cap skirt
+cap_collar_od = 25.80;      // Outer stop collar diameter matching 22-410 cap skirt (increased +1.0mm)
 
 // Calculated internal geometry
 shoulder_thickness = 7.0;   // Raised shoulder (+3.0 mm) to meet the shorter cap skirt
