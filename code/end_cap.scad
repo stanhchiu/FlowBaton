@@ -23,14 +23,14 @@ body_wall = 2.75;
 // Standard GPI 22-410 Bottle Neck Finish Parameters
 thread_major_d = 21.80;     // T dimension (nominal 21.84 mm with smooth clearance fit)
 neck_minor_d = 19.80;       // E dimension (neck wall diameter)
-neck_height = 10.50;        // Shortened neck height (10.5 mm) matching cap internal depth
+neck_height = 9.50;         // Shortened neck height (9.5 mm) matching cap internal depth
 thread_pitch = 3.175;       // Standard 8 TPI continuous thread pitch
 thread_start_offset = 1.20; // Distance from top lip down to start of thread
 
 cap_collar_od = 25.80;      // Outer stop collar diameter matching 22-410 cap skirt (increased +1.0mm)
 
 // Calculated internal geometry
-shoulder_thickness = 7.0;   // Raised shoulder (+3.0 mm) to meet the shorter cap skirt
+shoulder_thickness = 8.0;   // Raised shoulder (+4.0 mm) to meet the shorter cap skirt
 body_shaft_od = shaft_socket_id + 2 * body_wall; // 13.80 mm
 thread_depth = (thread_major_d - neck_minor_d) / 2; // 1.00 mm
 
