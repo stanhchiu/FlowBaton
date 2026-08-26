@@ -23,19 +23,19 @@ body_wall = 2.75;
 // Standard GPI 22-410 Bottle Neck Finish Parameters
 thread_major_d = 21.80;     // T dimension (nominal 21.84 mm with smooth clearance fit)
 neck_minor_d = 19.80;       // E dimension (neck wall diameter)
-neck_height = 13.50;        // Matches internal depth of 22-410 cap so cap seats flush on collar
+neck_height = 10.50;        // Shortened neck height (10.5 mm) matching cap internal depth
 thread_pitch = 3.175;       // Standard 8 TPI continuous thread pitch
 thread_start_offset = 1.20; // Distance from top lip down to start of thread
 
 cap_collar_od = 24.80;      // Outer stop collar diameter matching 22-410 cap skirt
 
 // Calculated internal geometry
-shoulder_thickness = 4.0;
+shoulder_thickness = 7.0;   // Raised shoulder (+3.0 mm) to meet the shorter cap skirt
 body_shaft_od = shaft_socket_id + 2 * body_wall; // 13.80 mm
 thread_depth = (thread_major_d - neck_minor_d) / 2; // 1.00 mm
 
-// Full-length thread extending down to the stop collar
-thread_length = neck_height - thread_start_offset; // ~12.3 mm (~3.8 full helical turns)
+// Full-length thread extending down to the raised stop collar
+thread_length = neck_height - thread_start_offset; // 9.30 mm (~2.9 full helical turns)
 
 // Helper function for rounded/trapezoidal bottle thread bead profile
 function bottle_thread_radius(angle, r_max, depth) =
@@ -60,7 +60,7 @@ module end_cap() {
   z_socket_top = shaft_socket_depth;
   z_collar_top = z_socket_top + shoulder_thickness;
   z_body_top = z_collar_top + neck_height;
-  z_thread_start = z_collar_top; // Threads run all the way down to collar shoulder
+  z_thread_start = z_collar_top; // Threads run all the way down to the raised collar shoulder
 
   difference() {
     union() {
@@ -71,15 +71,15 @@ module end_cap() {
       translate([0, 0, z_socket_top - 4])
         cylinder(r1 = body_shaft_od / 2, r2 = cap_collar_od / 2, h = 4);
 
-      // 3. Base collar cylinder (24.8 mm OD flat stop shoulder for bottle cap skirt)
+      // 3. Base collar cylinder (24.8 mm OD flat stop shoulder raised by 3mm)
       translate([0, 0, z_socket_top])
         cylinder(d = cap_collar_od, h = shoulder_thickness + 0.05);
 
-      // 4. GPI 22-410 Neck Cylinder (E dimension = 19.80 mm)
+      // 4. GPI 22-410 Neck Cylinder (E dimension = 19.80 mm, 10.5 mm height)
       translate([0, 0, z_collar_top])
         cylinder(d = neck_minor_d, h = neck_height);
 
-      // 5. Full-length Helical Threads running down to collar shoulder
+      // 5. Shortened Helical Threads running down to raised collar shoulder
       translate([0, 0, z_thread_start])
         gpi_bottle_thread(
           d_major = thread_major_d,
