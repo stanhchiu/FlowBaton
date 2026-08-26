@@ -11,7 +11,7 @@ $fn = 72;
 // Carbon shaft socket
 shaft_od = 8.0;
 shaft_socket_id = 8.30;
-shaft_socket_depth = 15.0;
+shaft_socket_depth = 10.0;
 
 // Glow-stick pocket
 glowstick_base_od = 14.5;
