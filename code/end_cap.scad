@@ -16,14 +16,14 @@ shaft_socket_depth = 10.0;
 // Glow-stick pocket
 glowstick_base_od = 14.5;
 glowstick_pocket_id = 14.85;
-glowstick_pocket_depth = 13.1;
+glowstick_pocket_depth = 13;
 
 body_wall = 2.75;
 
 // Standard GPI 22-410 Bottle Neck Finish Parameters
 thread_major_d = 21.80; // T dimension (nominal 21.84 mm with smooth clearance fit)
 neck_minor_d = 19.80; // E dimension (neck wall diameter)
-neck_height = 9.50; // Shortened neck height (9.5 mm) matching cap internal depth
+neck_height = 9; // Shortened neck height (9.5 mm) matching cap internal depth
 thread_pitch = 3.175; // Standard 8 TPI continuous thread pitch
 thread_start_offset = 1.20; // Distance from top lip down to start of thread
 
