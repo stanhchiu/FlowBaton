@@ -8,7 +8,7 @@ A 3D-printable end-cap system for majorette-style batons featuring an integrated
 
 * **`code/`** (OpenSCAD Models):
   * **[end_cap.scad](file:///c:/workspaces/Baton/code/end_cap.scad)**: End-cap body with standard GPI 22-410 external threads ($T = 21.80\text{ mm}$, $E = 19.80\text{ mm}$, $\text{pitch} = 3.175\text{ mm}$, $\text{height} = 9.0\text{ mm}$), $8.30\text{ mm}$ continuous through-hole, $10.0\text{ mm}$ socket, and $25.8\text{ mm}$ collar.
-  * **[drill_jig.scad](file:///c:/workspaces/Baton/code/drill_jig.scad)**: Centering drill jig for drilling $13.0\text{ mm}$ holes in $25.6\text{ mm}$ OD bottle caps.
+  * **[drill_jig.scad](file:///c:/workspaces/Baton/code/drill_jig.scad)**: Screw-on centering drill jig featuring standard GPI 22-410 external threads, an elongated $35.0\text{ mm}$ guide neck for $11.0\text{ mm}$ shank bits, and a $14.85\text{ mm}$ head clearance pocket.
   * **[retaining_ring.scad](file:///c:/workspaces/Baton/code/retaining_ring.scad)**: 3D-printable retaining ring reference.
 
 * **`exports/`** (Printable 3D Meshes):
@@ -18,7 +18,7 @@ A 3D-printable end-cap system for majorette-style batons featuring an integrated
 
 * **`print/`** (Slicer Projects & Settings):
   * **`end_cap.3mf`**: Creality Print project configured for printing the end-cap body in PETG.
-  * **`drill_jig.3mf`**: Creality Print project for the drill jig.
+  * **`drill_jig.3mf`**: Creality Print project for the screw-on drill jig.
   * **`retaining_ring.3mf`**: Slicer project for the retaining ring.
   * **[print_analysis.md](file:///c:/workspaces/Baton/print/print_analysis.md)**: Detailed mechanical, thermal, and printability analysis of the slicing parameters.
 
@@ -50,9 +50,11 @@ Using an injection-molded **22-410 Polypropylene (PP)** screw cap eliminates 3D-
 
 1. **Source a 22-410 Cap**: Available from travel bottles, 1 oz / 2 oz bottles, or in packs on Amazon / BottleStore.
 2. **Drill Centering with [drill_jig.stl](file:///c:/workspaces/Baton/exports/drill_jig.stl)**:
-   * Insert the cap into the bottom socket of the 3D-printed drill jig.
-   * Drill through the top guide hole with a **$13.0\text{ mm}$ (or $1/2"$) bit**.
-   * Push the drilled cap out using the side thumb windows.
+   * Slide the jig over your drill bit shank ($11.0\text{ mm}$ body) so the wider cutting head ($13.0\text{ mm}$ to $14.5\text{ mm}$) rests inside the top clearance pocket.
+   * Chuck the exposed bit shank into your hand drill or drill press.
+   * Screw the un-drilled 22-410 cap firmly onto the jig's threaded male neck until seated against the collar.
+   * Drill forward: clockwise rotation naturally tightens the cap against the shoulder stop while the long guide neck prevents bit wandering.
+   * Unscrew the drilled cap from the jig.
 
 ---
 
