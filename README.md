@@ -27,7 +27,15 @@ A 3D-printable end-cap system for majorette-style batons featuring an integrated
 
 ---
 
-## 2. Standard GPI 22-410 Specifications
+## 2. Hardware & Shaft Sourcing
+
+* **Carbon Fiber Shaft**: The assembly is designed around an **8 mm carbon fiber shaft / rod** (the through-bore is $8.30\text{ mm}$ for smooth clearance fit).
+* **Length**: Custom tailor and cut the shaft to your desired length to match performer height, reach, and balancing preferences.
+* **Availability**: 8 mm solid or hollow carbon fiber rods/tubes are readily and inexpensively available online from RC aircraft hobby shops, Amazon, or AliExpress.
+
+---
+
+## 3. Standard GPI 22-410 Specifications
 
 | Parameter | Value | Description |
 | :--- | :--- | :--- |
@@ -44,7 +52,7 @@ A 3D-printable end-cap system for majorette-style batons featuring an integrated
 
 ---
 
-## 3. Retaining Ring: Off-The-Shelf Bottle Cap Preparation
+## 4. Retaining Ring: Off-The-Shelf Bottle Cap Preparation
 
 Using an injection-molded **22-410 Polypropylene (PP)** screw cap eliminates 3D-printed internal thread stringing and provides virtually indestructible impact resistance against concrete floor drops:
 
@@ -58,7 +66,7 @@ Using an injection-molded **22-410 Polypropylene (PP)** screw cap eliminates 3D-
 
 ---
 
-## 4. Build & Synchronization Commands
+## 5. Build & Synchronization Commands
 
 Whenever modifying `.scad` files, compile STLs and synchronize the 3MF projects:
 
